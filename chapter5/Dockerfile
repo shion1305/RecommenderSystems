@@ -5,8 +5,9 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends cmake # for xlearn install
 
 RUN pip install --upgrade pip && \
-    pip install poetry
+    pip install poetry==1.1.12
 
 WORKDIR /app
 COPY pyproject.toml poetry.lock ./
+RUN poetry lock --no-update
 RUN poetry install
